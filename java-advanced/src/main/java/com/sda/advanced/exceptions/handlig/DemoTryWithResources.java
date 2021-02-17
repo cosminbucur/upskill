@@ -1,4 +1,4 @@
-package com.sda.advanced.exceptions.handling;
+package com.sda.advanced.exceptions.handlig;
 
 import java.util.Scanner;
 

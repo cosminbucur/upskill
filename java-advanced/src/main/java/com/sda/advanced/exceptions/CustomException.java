@@ -2,11 +2,13 @@ package com.sda.advanced.exceptions;
 
 public class CustomException extends RuntimeException {
 
+    // wrong
     public CustomException(String message) {
         super(message);
     }
 
-    public CustomException(String message, Throwable cause) {
+    // right
+    public CustomException(String message, RuntimeException cause) {
         super(message, cause);
     }
 }

@@ -17,6 +17,7 @@ public class SaveCauseOfException {
         }
     }
 
+    // TIP: use the root cause for a custom exception
     public static void right() {
         try {
             doBusinessLogic();
@@ -31,4 +32,5 @@ public class SaveCauseOfException {
         System.out.println("breakable logic");
         throw new IllegalArgumentException("don't forget about me!");
     }
+
 }

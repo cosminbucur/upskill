@@ -3,13 +3,16 @@ package com.sda.advanced.exceptions;
 public class LogWithoutThrow {
 
     public static void main(String[] args) {
-//        wrongBusinessLogic();
+        doHeavyLifting();
+    }
 
+    // TIP: log it when you handle it
+    public static void doHeavyLifting() {
         try {
             beLazy();
         } catch (IllegalStateException e) {
             System.out.println("ERROR " + e);
-            System.out.println("handling... carry on");
+            System.out.println("handling... carry on!");
         }
     }
 

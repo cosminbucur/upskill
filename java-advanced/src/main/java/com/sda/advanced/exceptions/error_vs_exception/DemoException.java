@@ -1,4 +1,4 @@
-package com.sda.advanced.exceptions.errors_vs_exception;
+package com.sda.advanced.exceptions.error_vs_exception;
 
 public class DemoException {
 
