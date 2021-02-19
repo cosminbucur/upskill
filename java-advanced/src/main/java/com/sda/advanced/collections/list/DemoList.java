@@ -1,6 +1,7 @@
 package com.sda.advanced.collections.list;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DemoList {
@@ -44,5 +45,9 @@ public class DemoList {
         for (String item : countries) {
             System.out.println(item);
         }
+
+        // create using List.of
+        List<String> numbers = List.of("one", "two", "three");
+        List<String> numbers2 = Arrays.asList("one", "two", "three");
     }
 }
