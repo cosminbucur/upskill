@@ -25,7 +25,8 @@ public class DemoConstructor {
 
         // constructor method reference
         commandLines.stream()
-                .map(Command::new)
+                .map(commandLine -> new Command(commandLine))
+//                .map(Command::new)
                 .forEach(System.out::println);
     }
 }
