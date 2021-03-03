@@ -1,0 +1,11 @@
+# custom properties
+appOwner: company
+releaseVersion: 1.0
+
+logging:
+  # default logging goes to console
+  file: boot.log # write logs to file
+  level:
+    root: INFO
+    org.springframework.web: ERROR
+    com.sda.spring.boot: DEBUG

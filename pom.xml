@@ -15,6 +15,9 @@
         <module>java-advanced</module>
         <module>design-patterns</module>
         <module>spring-core</module>
+
+        <module>parent-boot-2</module>
+        <module>spring-boot</module>
     </modules>
 
     <properties>
