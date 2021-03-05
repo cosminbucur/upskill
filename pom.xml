@@ -18,11 +18,15 @@
 
         <module>parent-boot-2</module>
         <module>spring-boot</module>
+        <module>jdbc</module>
     </modules>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+
+        <mysql.version>8.0.18</mysql.version>
+
         <junit.version>5.7.0</junit.version>
         <assertj.version>3.17.2</assertj.version>
         <mockito.version>3.5.13</mockito.version>
