@@ -2,7 +2,6 @@ package com.sda.hibernate.associations.one_to_one;
 
 public class DemoOneToOne {
 
-    // TODO fix one to one
     public static void main(String[] args) {
         Employee employee = new Employee("test@gmail.com");
 

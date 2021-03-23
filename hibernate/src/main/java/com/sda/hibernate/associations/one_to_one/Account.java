@@ -13,7 +13,9 @@ public class Account {
     @Column(name = "account_number")
     private String accountNumber;
 
-    @OneToOne
+    @OneToOne(mappedBy = "account",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
     private Employee employee;
 
     public Account() {
