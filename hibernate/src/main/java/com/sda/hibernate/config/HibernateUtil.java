@@ -8,7 +8,11 @@ import com.sda.hibernate.associations.one_to_many_uni.Daughter;
 import com.sda.hibernate.associations.one_to_many_uni.Mother;
 import com.sda.hibernate.associations.one_to_many_uni_join.Father;
 import com.sda.hibernate.associations.one_to_many_uni_join.Son;
+import com.sda.hibernate.associations.one_to_one.Account;
+import com.sda.hibernate.associations.one_to_one.Employee;
 import com.sda.hibernate.crud.Person;
+import com.sda.hibernate.queries.hql.Stock;
+import com.sda.hibernate.queries.native_query.Trader;
 import com.sda.hibernate.types.Player;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -56,6 +60,10 @@ public class HibernateUtil {
         // types
         configuration.addAnnotatedClass(Player.class);
 
+        // one to one
+        configuration.addAnnotatedClass(Employee.class);
+        configuration.addAnnotatedClass(Account.class);
+
         // one to many unidirectional
         configuration.addAnnotatedClass(Mother.class);
         configuration.addAnnotatedClass(Daughter.class);
@@ -71,6 +79,12 @@ public class HibernateUtil {
         // many to many
         configuration.addAnnotatedClass(Post.class);
         configuration.addAnnotatedClass(Tag.class);
+
+        // native query
+        configuration.addAnnotatedClass(Trader.class);
+
+        // hql
+        configuration.addAnnotatedClass(Stock.class);
 
         configuration.setProperties(properties);
         return configuration;

@@ -20,6 +20,7 @@
         <module>spring-core</module>
         <module>parent-boot-2</module>
         <module>spring-boot</module>
+        <module>spring-data-jpa</module>
     </modules>
 
     <properties>
@@ -28,6 +29,7 @@
 
         <mysql.version>8.0.18</mysql.version>
         <hibernate.version>5.4.22.Final</hibernate.version>
+        <h2.version>1.4.200</h2.version>
 
         <junit.version>5.7.0</junit.version>
         <assertj.version>3.17.2</assertj.version>
