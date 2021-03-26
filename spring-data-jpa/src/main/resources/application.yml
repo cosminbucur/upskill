@@ -11,3 +11,13 @@ spring:
       hibernate.format_sql: false
     show-sql: true
   h2.console.enabled: true # the JDBC URL is jdbc:h2:mem:testdb
+
+logging:
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+  level:
+    # setup logging for transactions
+    org.springframework.transaction.interceptor: TRACE
+    org.springframework.web: ERROR
+    org.hibernate: ERROR
+    com.sda.spring.data.jpa: INFO
