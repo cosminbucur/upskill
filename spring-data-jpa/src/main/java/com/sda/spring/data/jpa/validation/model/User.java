@@ -1,7 +1,6 @@
 package com.sda.spring.data.jpa.validation.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 
 // will be persisted
 @Entity
@@ -11,21 +10,10 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @NotEmpty(message = "name cannot be empty")
     private String name;
-
-    @Email(message = "email invalid format")
     private String email;
-
-    @AssertTrue(message = "consent must be accepted")
     private boolean consented;
-
-    @Size(min = 10, max = 100, message = "description should be between 10 - 100 characters")
     private String aboutMe;
-
-    @Min(value = 18, message = "age should be at least 18")
-    @Max(value = 80, message = "age should be maximum 80")
     private int age;
 
     public Long getId() {

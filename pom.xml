@@ -21,6 +21,8 @@
         <module>parent-boot-2</module>
         <module>spring-boot</module>
         <module>spring-data-jpa</module>
+        <module>spring-cache</module>
+        <module>spring-boot-redis</module>
     </modules>
 
     <properties>

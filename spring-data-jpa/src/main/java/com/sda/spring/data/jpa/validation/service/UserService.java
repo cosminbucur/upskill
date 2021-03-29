@@ -9,11 +9,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Validated  // evaluate constraint annotations on method params
+// validate on service or controller, persistence layer might be too late
 @Service
 public class UserService implements IUserService {
 
@@ -29,7 +33,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserReadDto save(UserWriteDto dto) {
+    public UserReadDto save(@Valid UserWriteDto dto) {
         log.info("saving: {}", dto);
         User user = userMapper.toEntity(dto);
 
@@ -49,12 +53,10 @@ public class UserService implements IUserService {
     public Optional<UserReadDto> findById(Long id) {
         return userRepository.findById(id)
                 .map(user -> userMapper.toDto(user));
-
-//                .orElseThrow(() -> new RuntimeException("user with id " + id + " not found "));
     }
 
-    @Override
-    public UserReadDto update(Long id, UserWriteDto dto) {
+    //    @Override
+    public UserReadDto update2(Long id, UserWriteDto dto) {
         // find user
         User foundUser = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("user with id " + id + " not found "));
@@ -77,10 +79,10 @@ public class UserService implements IUserService {
         userRepository.deleteById(id);
     }
 
-    public UserReadDto updateInOneShot(Long id, UserWriteDto updateData) {
+    public UserReadDto update(Long id, UserWriteDto updateData) {
         // find user
         return userRepository.findById(id)                              // find user
-                .map(user -> userMapper.toEntity(updateData))           // update data
+                .map(user -> userMapper.toEntity(user, updateData))     // update data
                 .map(updatedUser -> userRepository.save(updatedUser))   // save
                 .map(savedUser -> userMapper.toDto(savedUser))          // convert to dto
                 .orElseThrow(() -> new RuntimeException("user with id " + id + " not found "));

@@ -2,21 +2,24 @@ package com.sda.spring.data.jpa.validation.config;
 
 import com.sda.spring.data.jpa.validation.dto.UserReadDto;
 import com.sda.spring.data.jpa.validation.dto.UserWriteDto;
-import com.sda.spring.data.jpa.validation.model.User;
-import com.sda.spring.data.jpa.validation.repository.UserRepository;
 import com.sda.spring.data.jpa.validation.service.IUserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class ValidationConfig {
 
-    @Autowired
-    private UserRepository repository;
+    private static final Logger log = LoggerFactory.getLogger(ValidationConfig.class);
 
     @Autowired
     private IUserService userService;
@@ -24,46 +27,36 @@ public class ValidationConfig {
     @Bean
     public CommandLineRunner validationData() {
         return args -> {
-            testValidations();
+            testProgrammaticValidations();
             testService();
         };
     }
 
-    // TODO: add validation before save
-    private void testValidations() {
-        User goodUser = createGoodUser();
-        User badUser = createBadUser();
-        repository.save(goodUser);
-        repository.save(badUser);
+    private void testProgrammaticValidations() {
+        UserWriteDto goodUser = createUser();
+        isValid(goodUser);
+
+        UserWriteDto badUser = createBadUser();
+        isValid(badUser);
     }
 
-    private User createGoodUser() {
-        User user = new User();
-        user.setName("paul");
-        user.setEmail("paul@gmail.com");
-        user.setConsented(true);
-        user.setAge(20);
-        user.setAboutMe("learn to code every day");
-        return user;
-    }
+    // check if dto is valid
+    private boolean isValid(UserWriteDto dto) {
+        Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+        Set<ConstraintViolation<UserWriteDto>> constraintViolations = validator.validate(dto);
 
-    private User createBadUser() {
-        User user = new User();
-        user.setName("");
-        user.setEmail("paulgmail.com");
-        user.setConsented(false);
-        user.setAge(5);
-        user.setAboutMe("...");
-        return user;
+        if (!constraintViolations.isEmpty()) {
+            log.info("validating user: {}", dto);
+            constraintViolations
+                    .forEach(violation -> log.error("violation: {}", violation.getMessage()));
+            return false;
+        }
+        return true;
     }
 
     private void testService() {
-        UserWriteDto dto = new UserWriteDto();
-        dto.setName("paul");
-        dto.setEmail("paul@gmail.com");
-        dto.setConsented(true);
-        dto.setAge(20);
-        dto.setAboutMe("learn to code every day");
+        // extract method
+        UserWriteDto dto = createBadUser();
 
         UserReadDto savedUserDto = userService.save(dto);
 
@@ -74,12 +67,32 @@ public class ValidationConfig {
         UserWriteDto updateData = new UserWriteDto();
         updateData.setName("paul1");
         updateData.setEmail("paul@gmail.com1");
-        updateData.setConsented(false);
+        updateData.setConsented(true);
         updateData.setAge(21);
         updateData.setAboutMe("learn to code every day1");
 
         UserReadDto updatedUserDto = userService.update(foundUserDto.getId(), updateData);
 
         userService.delete(updatedUserDto.getId());
+    }
+
+    private UserWriteDto createBadUser() {
+        UserWriteDto dto = new UserWriteDto();
+        dto.setName("");
+        dto.setEmail("paulgmail.com");
+        dto.setConsented(false);
+        dto.setAge(5);
+        dto.setAboutMe("...");
+        return dto;
+    }
+
+    private UserWriteDto createUser() {
+        UserWriteDto dto = new UserWriteDto();
+        dto.setName("paul");
+        dto.setEmail("paul@gmail.com");
+        dto.setConsented(true);
+        dto.setAge(20);
+        dto.setAboutMe("learn to code every day");
+        return dto;
     }
 }

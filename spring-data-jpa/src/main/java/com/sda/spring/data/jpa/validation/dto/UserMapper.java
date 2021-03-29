@@ -16,6 +16,15 @@ public class UserMapper {
         return entity;
     }
 
+    public User toEntity(User userToUpdate, UserWriteDto updateInfo) {
+        userToUpdate.setName(updateInfo.getName());
+        userToUpdate.setEmail(updateInfo.getEmail());
+        userToUpdate.setConsented(updateInfo.isConsented());
+        userToUpdate.setAboutMe(updateInfo.getAboutMe());
+        userToUpdate.setAge(updateInfo.getAge());
+        return userToUpdate;
+    }
+
     public UserReadDto toDto(User entity) {
         UserReadDto dto = new UserReadDto();
         dto.setId(entity.getId());
