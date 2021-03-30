@@ -1,12 +1,10 @@
-package com.sda.spring.boot.redis.car.persistence;
+package com.sda.spring.cache.car;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "car")
-// must be serializable to be saved in redis cache
-public class Car implements Serializable {
+public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

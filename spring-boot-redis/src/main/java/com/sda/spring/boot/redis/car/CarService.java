@@ -1,14 +1,17 @@
 package com.sda.spring.boot.redis.car;
 
-import com.sda.spring.boot.redis.car.persistence.Car;
-import com.sda.spring.boot.redis.car.persistence.CarRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@CacheConfig(cacheNames = {"cars"})
 @Service
 public class CarService implements ICarService {
 
@@ -33,6 +36,7 @@ public class CarService implements ICarService {
         return carRepository.findAll();
     }
 
+    @Cacheable(key = "#id")
     @Override
     public Car findById(Long id) {
         log.info("find by id: {}", id);
@@ -40,12 +44,23 @@ public class CarService implements ICarService {
                 .orElseThrow(() -> new RuntimeException("car not found"));
     }
 
+    // unless - return value
+    @Cacheable(unless = "#owner == 'cristi'")
     @Override
     public Car findByOwner(String owner) {
         log.info("find by owner: {}", owner);
         return carRepository.findByOwner(owner);
     }
 
+    // condition - return list
+    @Cacheable(condition = "#brand == 'bmw'")
+    @Override
+    public List<Car> findByBrand(String brand) {
+        log.info("find by brand: {}", brand);
+        return carRepository.findByBrand(brand);
+    }
+
+    @CachePut(key = "#id")
     @Override
     public Car update(Long id, Car updateInfo) {
         log.info("updating car id: {}, with data: {}", id, updateInfo);
@@ -65,9 +80,16 @@ public class CarService implements ICarService {
                 .orElseThrow(() -> new RuntimeException("car not found"));
     }
 
+    @CacheEvict(key = "#id")
     @Override
     public void delete(Long id) {
         log.info("delete by id: {}", id);
         carRepository.deleteById(id);
+    }
+
+    @CacheEvict(allEntries = true)
+    @Override
+    public void clearCache() {
+        log.info("clearing cache");
     }
 }

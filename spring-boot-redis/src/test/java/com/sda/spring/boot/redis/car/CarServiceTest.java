@@ -1,4 +1,4 @@
-package com.sda.spring.cache.car;
+package com.sda.spring.boot.redis.car;
 
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,6 +112,7 @@ class CarServiceTest {
         assertThat(actual).isEqualTo(cachedCars);
     }
 
+    // FIXME
     @Order(6)
     @Test
     void whenFindByBrand_shouldNotCacheResult() {
