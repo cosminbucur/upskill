@@ -1,7 +1,5 @@
 package com.sda.spring.cache.car;
 
-import com.sda.spring.cache.car.persistence.Car;
-
 import java.util.List;
 
 public interface ICarService {
@@ -14,7 +12,11 @@ public interface ICarService {
 
     Car findByOwner(String owner);
 
+    List<Car> findByBrand(String brand);
+
     Car update(Long id, Car updateInfo);
 
     void delete(Long id);
+
+    void clearCache();
 }

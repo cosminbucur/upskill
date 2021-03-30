@@ -18,6 +18,8 @@
         <module>hibernate</module>
 
         <module>spring-core</module>
+        <module>spring-aop</module>
+
         <module>parent-boot-2</module>
         <module>spring-boot</module>
         <module>spring-data-jpa</module>

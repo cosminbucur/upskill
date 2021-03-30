@@ -1,7 +1,5 @@
 package com.sda.spring.cache.car;
 
-import com.sda.spring.cache.car.persistence.Car;
-import com.sda.spring.cache.car.persistence.CarRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,14 +28,13 @@ public class CarService implements ICarService {
         return carRepository.save(car);
     }
 
-    @Cacheable(value = "cars")
     @Override
     public List<Car> findAll() {
         log.info("find all from db");
         return carRepository.findAll();
     }
 
-    @Cacheable(value = "cars")
+    @Cacheable(value = "cars", key = "#id")
     @Override
     public Car findById(Long id) {
         log.info("find by id: {}", id);
@@ -45,12 +42,20 @@ public class CarService implements ICarService {
                 .orElseThrow(() -> new RuntimeException("car not found"));
     }
 
-    // ignore if owner is 'cristi'
-    @Cacheable(value = "cars", unless = "#p0=='cristi'")
+    // unless - return value
+    @Cacheable(value = "cars", unless = "#owner == 'cristi'")
     @Override
     public Car findByOwner(String owner) {
         log.info("find by owner: {}", owner);
         return carRepository.findByOwner(owner);
+    }
+
+    // condition - return list
+    @Cacheable(value = "cars", condition = "#brand == 'bmw'")
+    @Override
+    public List<Car> findByBrand(String brand) {
+        log.info("find by brand: {}", brand);
+        return carRepository.findByBrand(brand);
     }
 
     @CachePut(value = "cars", key = "#id")
@@ -78,5 +83,11 @@ public class CarService implements ICarService {
     public void delete(Long id) {
         log.info("delete by id: {}", id);
         carRepository.deleteById(id);
+    }
+
+    @CacheEvict(value = "cars", allEntries = true)
+    @Override
+    public void clearCache() {
+        log.info("clearing cache");
     }
 }

@@ -17,3 +17,4 @@ spring:
   cache:
     redis:
       time-to-live: 60000 # 1 min
+      key-prefix: "sda::"
