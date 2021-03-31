@@ -12,7 +12,6 @@ public class BookService {
 
     private static final Logger log = LoggerFactory.getLogger(BookService.class);
 
-    // find all
     public List<String> findAll() {
         log.info("in findAll()");
         return new ArrayList<>();
@@ -24,7 +23,6 @@ public class BookService {
         return "book";
     }
 
-    // exists
     public boolean exists(Long id) {
         log.info("in exists()");
         if (id < 0) {
@@ -33,7 +31,6 @@ public class BookService {
         return false;
     }
 
-    // delete
     public void delete(Long id) {
         log.info("in delete()");
     }

@@ -2,27 +2,22 @@ package com.sda.spring.aop;
 
 import com.sda.spring.aop.config.AppConfig;
 import com.sda.spring.aop.service.BookService;
-import com.sda.spring.aop.service.VersionService;
+import com.sda.spring.aop.service.OutputService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class SpringAOPApplication {
 
-
     private static BookService bookService;
+    private static OutputService outputService;
 
     public static void main(String[] args) {
-
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-
-        VersionService versionService = context.getBean("versionService", VersionService.class);
-
-        String version = versionService.getVersion();
-        System.out.println("-------- " + version);
-
         bookService = context.getBean("bookService", BookService.class);
+        outputService = context.getBean("outputService", OutputService.class);
 
-        testExecutionAspects();
+//        testExecutionAspects();
+        testAnnotationAspect();
     }
 
     private static void testExecutionAspects() {
@@ -36,5 +31,10 @@ public class SpringAOPApplication {
         }
 
         bookService.delete(1L);
+    }
+
+    private static void testAnnotationAspect() {
+        outputService.generateOutput();
+        outputService.generateOutput();
     }
 }

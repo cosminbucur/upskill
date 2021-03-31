@@ -14,17 +14,22 @@
         <module>fundamentals</module>
         <module>java-advanced</module>
         <module>design-patterns</module>
-        <module>jdbc</module>
-        <module>hibernate</module>
 
         <module>spring-core</module>
         <module>spring-aop</module>
 
         <module>parent-boot-2</module>
+
+        <!-- persistence -->
+        <module>jdbc</module>
+        <module>hibernate</module>
         <module>spring-boot</module>
         <module>spring-data-jpa</module>
         <module>spring-cache</module>
         <module>spring-boot-redis</module>
+
+        <!-- web -->
+        <module>spring-boot-rest</module>
     </modules>
 
     <properties>
