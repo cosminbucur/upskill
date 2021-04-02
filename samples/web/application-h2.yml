@@ -2,6 +2,9 @@
 server.port: 8081
 
 spring:
+  # set the active profile
+  profiles:
+    active: test
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
@@ -26,4 +29,4 @@ spring:
 management.endpoints.web.exposure.include: "*"
 
 # disable endpoints
-#management.endpoints.web.exposure.exclude: health,info,env,beans
+management.endpoints.web.exposure.exclude: health,info,env,beans

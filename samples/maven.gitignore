@@ -9,4 +9,7 @@
 # Maven
 log/
 */target/
-/*/logs/
+*/logs/
+
+# sub folders
+/microservices/*/target/

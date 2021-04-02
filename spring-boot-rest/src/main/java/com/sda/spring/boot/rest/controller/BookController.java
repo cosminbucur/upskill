@@ -21,33 +21,17 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    // TODO: replace with ResponseEntity.ok / not found
-    // post /api/books
     @PostMapping
     public ResponseEntity<BookResponse> create(@RequestBody BookRequest request) {
         BookResponse response = bookService.save(request);
-        ResponseEntity
-                .ok();
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    // get /api/books
     @GetMapping
     public ResponseEntity<List<BookResponse>> findAll() {
         return new ResponseEntity<>(bookService.findAll(), HttpStatus.OK);
     }
 
-    // put /api/books/{id}
-    @PutMapping("/{id}")
-    public ResponseEntity<BookResponse> update(
-            @PathVariable(name = "id") Long id,
-            @RequestBody BookRequest request) {
-
-        BookResponse response = bookService.update(request);
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
-
-    // get /api/books/{id}
     @GetMapping("/{id}")
     public ResponseEntity<BookResponse> findById(
             @PathVariable(name = "id") Long id) {
@@ -56,12 +40,28 @@ public class BookController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    // delete /api/books/{id}
+    @GetMapping("/search")
+    public ResponseEntity<List<BookResponse>> getBooksByAuthor(
+            @RequestParam(name = "authorName") String authorName) {
+
+        List<BookResponse> response = bookService.findByAuthor(authorName);
+        return ResponseEntity.ok(response);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<BookResponse> update(
+            @PathVariable(name = "id") Long id,
+            @RequestBody BookRequest request) {
+
+        BookResponse response = bookService.update(id, request);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(
+    public ResponseEntity<Object> delete(
             @PathVariable(name = "id") Long id) {
 
         bookService.delete(id);
-        return ResponseEntity.ok("book deleted");
+        return ResponseEntity.noContent().build();
     }
 }

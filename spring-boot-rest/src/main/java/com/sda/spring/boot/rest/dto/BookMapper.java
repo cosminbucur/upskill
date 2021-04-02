@@ -31,4 +31,11 @@ public class BookMapper {
         response.setPublished(entity.getPublished());
         return response;
     }
+
+    public Book toEntity(Book entity, BookRequest updateInfo) {
+        entity.setTitle(updateInfo.getTitle());
+        entity.setAuthor(updateInfo.getAuthor());
+        entity.setPublished(updateInfo.getPublished());
+        return entity;
+    }
 }

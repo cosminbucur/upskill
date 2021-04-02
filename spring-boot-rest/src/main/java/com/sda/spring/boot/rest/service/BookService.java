@@ -3,6 +3,8 @@ package com.sda.spring.boot.rest.service;
 import com.sda.spring.boot.rest.dto.BookMapper;
 import com.sda.spring.boot.rest.dto.BookRequest;
 import com.sda.spring.boot.rest.dto.BookResponse;
+import com.sda.spring.boot.rest.exception.DuplicateBookException;
+import com.sda.spring.boot.rest.exception.NotFoundException;
 import com.sda.spring.boot.rest.model.Book;
 import com.sda.spring.boot.rest.repository.BookRepository;
 import org.slf4j.Logger;
@@ -27,11 +29,12 @@ public class BookService {
     }
 
     public BookResponse save(BookRequest request) {
+        log.info("saving book with data: {}", request);
         // prevent duplicate title
         // find by title
         Book existingBook = bookRepository.findByTitle(request.getTitle());
         if (existingBook != null) {
-            throw new RuntimeException("book with title: " + request.getTitle() + " already exists");
+            throw new DuplicateBookException("book with title: " + request.getTitle() + " already exists");
         }
 
         // request to entity
@@ -48,15 +51,33 @@ public class BookService {
         return bookMapper.toDto(books);
     }
 
-    public BookResponse update(BookRequest request) {
-        return null;
+    public BookResponse findById(Long id) {
+        log.info("find book with id: {}", id);
+        Book foundBook = bookRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("book not found"));
+        return bookMapper.toDto(foundBook);
     }
 
-    public BookResponse findById(Long id) {
-        return null;
+    public List<BookResponse> findByAuthor(String author) {
+        log.info("find book by author: {}", author);
+
+        List<Book> books = bookRepository.findByAuthor(author);
+        return bookMapper.toDto(books);
+    }
+
+    public BookResponse update(Long id, BookRequest request) {
+        log.info("updating book with id: {} and data: {}", id, request);
+
+        Book foundBook = bookRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("book not found"));
+        Book updatedBook = bookMapper.toEntity(foundBook, request);
+        Book savedBook = bookRepository.save(updatedBook);
+        return bookMapper.toDto(savedBook);
     }
 
     public void delete(Long id) {
+        log.info("delete book with id: {}", id);
 
+        bookRepository.deleteById(id);
     }
 }
