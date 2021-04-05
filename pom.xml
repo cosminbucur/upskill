@@ -32,6 +32,8 @@
         <module>spring-boot-rest</module>
         <module>spring-resttemplate</module>
         <module>spring-webflux</module>
+        <module>json-schema</module>
+        <module>microservices</module>
     </modules>
 
     <properties>

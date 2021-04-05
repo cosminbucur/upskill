@@ -1,0 +1,27 @@
+{
+  "id": 123,
+  "lastUpdated": "2019-12-21T06:26:51.933015Z",
+  "name": "invitation",
+  "childObject": {
+    "clock": {
+      "status": "ACTIVE",
+      "clockRunning": true
+    },
+    "events": [
+      {
+        "location": "Romania",
+        "time": {
+          "minutes": 10,
+          "seconds": 30
+        }
+      },
+      {
+        "location": "Germany",
+        "time": {
+          "minutes": 5,
+          "seconds": 15
+        }
+      }
+    ]
+  }
+}

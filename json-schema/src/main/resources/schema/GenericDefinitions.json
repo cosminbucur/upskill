@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "INACTIVE"
+      ]
+    },
+    "Time": {
+      "type": "object",
+      "properties": {
+        "minutes": {
+          "type": "integer"
+        },
+        "seconds": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "minutes",
+        "seconds"
+      ]
+    }
+  }
+}
