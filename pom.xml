@@ -34,6 +34,8 @@
         <module>spring-webflux</module>
         <module>json-schema</module>
         <module>microservices</module>
+        <module>spring-security-memory</module>
+        <module>spring-filter</module>
     </modules>
 
     <properties>
