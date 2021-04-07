@@ -1,7 +1,6 @@
 package com.sda.spring.security.memory.authorities.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -10,7 +9,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
-@Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     // configure in memory auth with 3 users
@@ -40,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // allow role admin and user
                 .antMatchers("/api/role").hasAnyRole("ADMIN", "USER")
 
-                // allow authority for admin and manager
+                // allow authority admin and manager
                 .antMatchers("/api/authority").hasAuthority("READ_AUTHORITY")
 
                 .and()

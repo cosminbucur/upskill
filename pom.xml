@@ -33,9 +33,15 @@
         <module>spring-resttemplate</module>
         <module>spring-webflux</module>
         <module>json-schema</module>
-        <module>microservices</module>
-        <module>spring-security-memory</module>
+
+        <!-- security -->
         <module>spring-filter</module>
+        <module>spring-security-memory</module>
+        <module>spring-security-database</module>
+        <module>spring-security-jpa-mysql</module>
+        <module>spring-security-jdbc-mysql</module>
+
+        <module>microservices</module>
     </modules>
 
     <properties>

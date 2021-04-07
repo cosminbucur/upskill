@@ -18,6 +18,8 @@ public class SecurityUtils {
                 username = springSecurityUser.getUsername();
             }
 
+            // principal: anonymousUser
+            // authority: ROLE_ANONYMOUS
             if (authentication.getPrincipal() instanceof String) {
                 username = (String) authentication.getPrincipal();
             }
@@ -30,7 +32,6 @@ public class SecurityUtils {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Authentication authentication = securityContext.getAuthentication();
         if (authentication != null) {
-            // get all authorities that are not ROLE_ANONYMOUS
             return authentication.getAuthorities().stream()
                     .noneMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ANONYMOUS"));
         }
@@ -41,7 +42,6 @@ public class SecurityUtils {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Authentication authentication = securityContext.getAuthentication();
         if (authentication != null) {
-            // use that matches authority
             return authentication.getAuthorities().stream()
                     .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals(authority));
         }
