@@ -5,6 +5,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.sql.DataSource;
 
@@ -18,10 +19,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
+                .passwordEncoder(new BCryptPasswordEncoder())
                 // get user
-                .usersByUsernameQuery("SELECT username, role FROM users WHERE username = ?")
+                .usersByUsernameQuery("SELECT username, role, enabled FROM app_user WHERE username = ?")
                 // get permission
-                .authoritiesByUsernameQuery("SELECT username, password FROM users WHERE username = ?");
+                .authoritiesByUsernameQuery("SELECT username, role FROM app_user WHERE username = ?");
     }
 
     @Override
@@ -32,4 +34,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .httpBasic();
     }
+
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+//    }
 }

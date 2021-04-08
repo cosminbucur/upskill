@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class DefaultController {
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String home() {
-        return "/home";
+        return "/index";
     }
 
     @GetMapping("/admin")
@@ -21,9 +21,9 @@ public class DefaultController {
         return "/user";
     }
 
-    @GetMapping("/about")
+    @GetMapping("/public")
     public String about() {
-        return "/about";
+        return "/public";
     }
 
     // unauthorized

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("api")
-public class PublicRestApiController {
+public class DefaultController {
 
     // http://localhost:8081/api/public
     @GetMapping("public")

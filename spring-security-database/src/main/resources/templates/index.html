@@ -1,13 +1,27 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
->
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8"/>
-    <title>Spring security</title>
+    <title>Spring Boot Thymeleaf + Spring Security</title>
+
+    <div th:replace="fragments/header :: header-css"/>
+
 </head>
 <body>
-<div align="center">
-    <h1>Spring Security Basic Boot in-memory DB Sample</h1>
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1>Spring Boot Web Thymeleaf + Spring Security</h1>
+        <h2>1. Visit <a th:href="@{/admin}">Admin page (protected by ADMIN role)</a></h2>
+        <h2>2. Visit <a th:href="@{/user}">User page (protected by USER role)</a></h2>
+        <h2>3. Visit <a th:href="@{/public}">Regular page</a></h2>
+    </div>
+
 </div>
+
+<div th:replace="fragments/footer :: footer"/>
+
 </body>
 </html>

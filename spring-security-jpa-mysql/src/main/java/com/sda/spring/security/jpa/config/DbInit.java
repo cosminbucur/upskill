@@ -1,7 +1,7 @@
-package com.sda.spring.security.database.config;
+package com.sda.spring.security.jpa.config;
 
-import com.sda.spring.security.database.model.AppUser;
-import com.sda.spring.security.database.repository.AppUserRepository;
+import com.sda.spring.security.jpa.model.AppUser;
+import com.sda.spring.security.jpa.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;

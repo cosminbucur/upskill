@@ -1,4 +1,4 @@
-INSERT INTO `spring_security_jdbc`.`users` (`username`, `email`, `password`, `role`)
-VALUES ('admin', 'admin@gmail.com', '{bcrypt}$2y$12$92ZkDrGVS3W5ZJI.beRlEuyRCPrIRlkEHz6T.7MVmH38l4/VAHhyi', 'ADMIN');
-INSERT INTO `spring_security_jdbc`.`users` (`username`, `email`, `password`, `role`)
-VALUES ('user', 'user@gmail.com', '{bcrypt}$2y$12$92ZkDrGVS3W5ZJI.beRlEuyRCPrIRlkEHz6T.7MVmH38l4/VAHhyi', 'USER');
+INSERT INTO `spring_security_jdbc`.`app_user` (`username`, `password`, `enabled`, `role`, `email`)
+VALUES ('admin', '{bcrypt}$2y$12$92ZkDrGVS3W5ZJI.beRlEuyRCPrIRlkEHz6T.7MVmH38l4/VAHhyi', 1, 'ADMIN', 'admin@gmail.com');
+INSERT INTO `spring_security_jdbc`.`app_user` (`username`, `password`, `enabled`, `role`, `email`)
+VALUES ('user', '{bcrypt}$2y$12$92ZkDrGVS3W5ZJI.beRlEuyRCPrIRlkEHz6T.7MVmH38l4/VAHhyi', 1, 'USER', 'user@gmail.com');

@@ -19,7 +19,7 @@ public class AppUser {
     @Column(nullable = false)
     private String password;
 
-    private int active;
+    private boolean enabled;
 
     // ADMIN, USER
     private String roles = "";
@@ -30,7 +30,7 @@ public class AppUser {
     public AppUser(String username, String password, String roles) {
         this.username = username;
         this.password = password;
-        this.active = 0;
+        this.enabled = true;
         this.roles = roles;
     }
 
@@ -46,8 +46,8 @@ public class AppUser {
         return password;
     }
 
-    public int getActive() {
-        return active;
+    public boolean isEnabled() {
+        return enabled;
     }
 
     public String getRoles() {
