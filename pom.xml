@@ -42,6 +42,7 @@
         <module>spring-security-jdbc-mysql</module>
 
         <module>microservices</module>
+        <module>testing-advanced</module>
     </modules>
 
     <properties>

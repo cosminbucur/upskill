@@ -36,6 +36,7 @@ TODO setup initial users
 
 in postman:
 
-    http://localhost:8081/principal
+[/principal](http://localhost:8081/principal)
+
     Authorization: Basic Auth
     admin / pass

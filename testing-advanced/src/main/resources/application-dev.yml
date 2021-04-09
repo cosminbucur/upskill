@@ -1,0 +1,24 @@
+server.port: 8083
+
+jdbc:
+  driver-class-name: com.mysql.cj.jdbc.Driver
+  url: jdbc:mysql://localhost:3306/testing?serverTimezone=UTC
+  username: root
+  password: root
+
+hibernate:
+  dialect: org.hibernate.dialect.MySQL8Dialect
+  hbm2ddl.auto: update
+  show_sql: true
+  format_sql: false
+
+logging:
+  file: testing-advanced/logs/application.log
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    org.hibernate: ERROR
+    com.sda.testing.advanced: DEBUG
+
+frontend:
+  baseUrl: http://localhost:4200
