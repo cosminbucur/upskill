@@ -1,17 +1,17 @@
 # Final project
 
-Scenario - Weatherlady
+Scenario - WeatherLady
 
 ## Brief description of the system
 
 As part of the project, a system should be created to collect data from one or preferably two weather services and
 provide the average (the result should be a given weather value calculated as the arithmetic average of the results
 returned by each service) values calculated on the basis of the responses returned. The system should be constructed
-using two micorservices:
+using two microservices:
 
 microservice #1 - which will be responsible for fetching the data from external services
 
-microserivce #2 - which will be reponsible for calculating weather metrics based on the microservice #1 responses
+microservice #2 - which will be responsible for calculating weather metrics based on the microservice #1 responses
 
 ## Main system functions
 
@@ -19,17 +19,16 @@ microserivce #2 - which will be reponsible for calculating weather metrics based
 - Downloaded data should be saved to the database
 - The application should use the city date and location to retrieve average values
 - Average results should be saved in the database
-- (Optional) access to the system should be limited to the authenticated and authorizded users only
+- (Optional) access to the system should be limited to the authenticated and authorized users only
 
 ## Technologies
 
 - Spring framework including: web, jpa, security
 - Rest template for network communication
 - JDBC or Hibernate
-- Domain logic divided into layers, eg Repository, Service, Web
+- Domain logic divided into layers, e.g. Repository, Service, Web
 - JSON data serialization/deserialization tool, eg Gson, Jackson
 - Unit testing tools
-- (Optional) Thymeleaf + Spring, React or Angular frontend
 
 ## Functionalities
 
@@ -51,23 +50,23 @@ https://openweathermap.org/api
 
 ### Supported parameters
 
-One of the micorservices should be responsible for retriving the following values:
+One of the microservices should be responsible for retrieving the following values:
 
 - temperature
 - pressure
 - humidity
 - wind direction and speed
 
-Values ​​taken from external websites should saved additionally to the database before being returned as a response.
+Values taken from external websites should be saved additionally to the database before being returned as a response.
 Before requesting the data to external services, the local database should be checked if the data already exists.
 
-The second microservice should be responsible for retriving the data based on the another microservice and should
-calculate average weather metrics based on algorightms. Results should be saved in the database as well. As a response
+The second microservice should be responsible for retrieving the data based on the another microservice and should
+calculate average weather metrics based on algorithms. Results should be saved in the database as well. As a response
 calculated values should be returned.
 
 ### Available download configurations
 
-The user can indicate the following values ​​via the application:
+The user can indicate the following values via the application:
 
 ### DATE
 
@@ -76,7 +75,7 @@ agreed format, the weather for tomorrow should be checked.
 
 ### LOCATION
 
-The request may indicate the location for which the values ​​should be returned. The location should be able to be
+The request may indicate the location for which the values should be returned. The location should be able to be
 communicated as city name or a geographic coordinate. Before using it, the location should be saved in the database.
 
 ### (Optional) Security
@@ -99,10 +98,11 @@ mechanism like for example JWT.
 
 Additionally, as part of the task, the user should ensure appropriate validation:
 
-id - optional: UUID format longitude and latitude according to geographical values ​​(latitude: -90 -> S, 90 -> N,
-longitude: -180 -> W, 180 -> E)
-city name - cannot be empty region - optional: may be null Country name - cannot be empty If incorrect data are entered,
-the appropriate response should be returned.
+- id - optional: UUID format
+- longitude and latitude according to geographical values (latitude: -90 -> S, 90 -> N, longitude: -180 -> W, 180 -> E)
+- city name - cannot be empty
+- region - optional: may be null
+- country name - cannot be empty If incorrect data are entered, the appropriate response should be returned.
 
 ### Display of available locations
 
@@ -112,7 +112,7 @@ By selecting the menu option, the user should be able to request all available l
 
 Create a separate web service which will be responsible for delivering 3rd party api keys which are necessary for the
 external services. During the request the main REST API, proper external service config should be fetched from another
-micorservice. Please ensure a safe communication approach with created config web service.
+microservice. Please ensure a safe communication approach with created config web service.
 
 ## Edit location
 
@@ -121,12 +121,12 @@ included in the edit.
 
 ## Location search
 
-The user should be able to find a information about a specific location by searching for it, e.g. by name.
+The user should be able to find information about a specific location by searching for it, e.g. by name.
 
 ## Statistic data
 
-The user should be able to request statistical data on selected weather values ​​from a specific time period, e.g.
-month, year. Data for this purpose should be fetched directly from the database.
+The user should be able to request statistical data on selected weather values from a specific time period, e.g. month,
+year. Data for this purpose should be fetched directly from the database.
 
 ## Unit tests
 
