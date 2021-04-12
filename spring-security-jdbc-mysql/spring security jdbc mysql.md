@@ -14,6 +14,10 @@ TODO create mysql database
         schema.sql - schema of the database
         data.sql - user data
 
+[bcrypt generator](https://bcrypt-generator.com/)
+
+pass = {bcrypt}$2y$12$92ZkDrGVS3W5ZJI.beRlEuyRCPrIRlkEHz6T.7MVmH38l4/VAHhyi
+
 # security config
 
 TODO setup authentication with jdbc

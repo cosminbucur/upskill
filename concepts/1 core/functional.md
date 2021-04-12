@@ -13,8 +13,8 @@
         - bi functions
 
     - operators
-        - unary operators (x)
-        - binary operators (x)
+        - unary operators
+        - binary operators
 
         - consumer
         - predicate
@@ -22,13 +22,17 @@
 
 - method reference
     - static
-        - static
+        - static 1
+        - static 2
     - instance method
-        - instance
+        - instance 1
+        - instance 2
     - instance arbitrary
-        - instance arbitrary
+        - instance arbitrary 1
+        - instance arbitrary 2
     - constructor
-        - constructor
+        - constructor 1
+        - constructor 2
 
 - stream
     - for each

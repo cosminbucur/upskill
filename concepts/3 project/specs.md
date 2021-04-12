@@ -46,6 +46,7 @@ Fetching weather data from external services Under this endpoint, the user shoul
 following systems:
 
 https://weatherstack.com/documentation
+
 https://openweathermap.org/api
 
 ### Supported parameters
@@ -55,7 +56,8 @@ One of the microservices should be responsible for retrieving the following valu
 - temperature
 - pressure
 - humidity
-- wind direction and speed
+- wind direction
+- wind speed
 
 Values taken from external websites should be saved additionally to the database before being returned as a response.
 Before requesting the data to external services, the local database should be checked if the data already exists.
@@ -80,8 +82,8 @@ communicated as city name or a geographic coordinate. Before using it, the locat
 
 ### (Optional) Security
 
-Only authenticated and authorized users should be able to use the created web service. Please choose any authentication
-mechanism like for example JWT.
+Only authenticated and authorized users should be able to use the created web service using any authentication
+mechanism.
 
 ---
 
@@ -92,7 +94,8 @@ mechanism like for example JWT.
 - The user should be able to add a location to the database by entering the following values as a request body:
 
 - id
-- longitude and latitude
+- latitude
+- longitude
 - region
 - country name
 
